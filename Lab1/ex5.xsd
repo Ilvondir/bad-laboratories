@@ -1,0 +1,72 @@
+<?xml version="1.0"?> 
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified"> 
+
+    <!-- Russian doll -->
+ 
+    <xs:element name="rozklad">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="pociagi" >
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="pociag" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        
+                                        <xs:element name="nazwa" type="xs:string"/>
+                                        <xs:element name="rodzaj" type="xs:string"/>
+                                        <xs:element name="przewoznik">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:maxLength value="15"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                        </xs:element>
+
+                                        <xs:element name="przystanki" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="przystanek" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="nazwa" type="xs:string"/>
+                                                                <xs:element name="przyjazd" type="xs:time"/>
+                                                                <xs:element name="odjazd" type="xs:time"/>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+
+                                        <xs:element name="wagony" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="wagon" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="numer" type="xs:integer"/>
+                                                                <xs:element name="rodzaj" type="xs:string"/>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+
+                                    </xs:sequence>
+
+                                    <xs:attribute name="numer" type="xs:integer"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+
+            <xs:attribute name="od" type="xs:date" />
+            <xs:attribute name="do" type="xs:date" />
+        </xs:complexType>
+    </xs:element>
+ 
+</xs:schema>

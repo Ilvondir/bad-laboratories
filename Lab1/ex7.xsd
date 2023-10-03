@@ -1,0 +1,67 @@
+<?xml version="1.0"?> 
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified">
+
+    <!-- Venetian Blind -->
+
+    <xs:complexType name="wagon">
+        <xs:sequence>
+            <xs:element name="numer" type="xs:integer"/>
+            <xs:element name="rodzaj" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType> 
+
+    <xs:complexType name="wagony">
+        <xs:sequence>
+            <xs:element name="wagon" type="wagon" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="przystanek">
+        <xs:sequence>
+            <xs:element name="nazwa" type="xs:string"/>
+            <xs:element name="przyjazd" type="xs:time"/>
+            <xs:element name="odjazd" type="xs:time"/>
+        </xs:sequence>
+    </xs:complexType>    
+
+    <xs:complexType name="przystanki">
+        <xs:sequence>
+            <xs:element name="przystanek" type="przystanek" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="przewoznik">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="15"/> 
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="pociag">
+        <xs:sequence>
+            <xs:element name="nazwa" type="xs:string"/>
+            <xs:element name="rodzaj" type="xs:string"/>
+            <xs:element name="przewoznik" type="przewoznik"/>
+            <xs:element name="przystanki" type="przystanki"/>
+            <xs:element name="wagony" type="wagony"/>
+        </xs:sequence>
+        <xs:attribute name="numer" type="xs:integer"/>
+    </xs:complexType>
+
+    <xs:complexType name="pociagi">
+        <xs:sequence>
+            <xs:element name="pociag" type="pociag" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="rozklad">
+        <xs:sequence>
+            <xs:element name="pociagi" type="pociagi" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="od" type="xs:date"/>
+        <xs:attribute name="do" type="xs:date"/>
+    </xs:complexType>
+
+    <xs:element name="rozklad" type="rozklad" />
+
+
+</xs:schema>

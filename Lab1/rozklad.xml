@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rozklad od="2023-10-21" do="2023-11-12" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="ex7.xsd">
+
+    <pociagi>
+
+        <pociag numer="1">
+            <nazwa>Agata</nazwa>
+            <rodzaj>ekspres</rodzaj>
+            <przewoznik>Galicja EXPRESS</przewoznik>
+
+            <przystanki>
+                <przystanek>
+                    <nazwa>Kopisto Rejtana</nazwa>
+                    <przyjazd>11:31:00</przyjazd>
+                    <odjazd>11:33:00</odjazd>
+                </przystanek>
+                <przystanek>
+                    <nazwa>Kopisto</nazwa>
+                    <przyjazd>11:44:00</przyjazd>
+                    <odjazd>11:46:00</odjazd>
+                </przystanek>
+                <przystanek>
+                    <nazwa>Podwisłocze</nazwa>
+                    <przyjazd>11:58:00</przyjazd>
+                    <odjazd>11:59:00</odjazd>
+                </przystanek>
+            </przystanki>
+
+            <wagony>
+                <wagon>
+                    <numer>1</numer>
+                    <rodzaj>wagon sypialny</rodzaj>
+                </wagon>
+                <wagon>
+                    <numer>2</numer>
+                    <rodzaj>wagon klasy 2</rodzaj>
+                </wagon>
+                <wagon>
+                    <numer>3</numer>
+                    <rodzaj>wagon klasy 1</rodzaj>
+                </wagon>
+            </wagony>
+        </pociag>
+
+        <pociag numer="2">
+            <nazwa>Bursa</nazwa>
+            <rodzaj>pospieszny</rodzaj>
+            <przewoznik>Marcel</przewoznik>
+
+            <przystanki>
+                <przystanek>
+                    <nazwa>Kwiatowe</nazwa>
+                    <przyjazd>16:11:00</przyjazd>
+                    <odjazd>16:12:00</odjazd>
+                </przystanek>
+                <przystanek>
+                    <nazwa>Przyborowie</nazwa>
+                    <przyjazd>16:21:00</przyjazd>
+                    <odjazd>16:22:00</odjazd>
+                </przystanek>
+            </przystanki>
+
+            <wagony>
+                <wagon>
+                    <numer>1</numer>
+                    <rodzaj>wagon klasy 1</rodzaj>
+                </wagon>
+                <wagon>
+                    <numer>2</numer>
+                    <rodzaj>wagon restauracyjny</rodzaj>
+                </wagon>
+            </wagony>
+        </pociag>
+
+        <pociag numer="3">
+            <nazwa>Agrowagon</nazwa>
+            <rodzaj>pospieszny</rodzaj>
+            <przewoznik>TransPan</przewoznik>
+
+            <przystanki>
+                <przystanek>
+                    <nazwa>Moskwa</nazwa>
+                    <przyjazd>11:25:00</przyjazd>
+                    <odjazd>12:09:00</odjazd>
+                </przystanek>
+                <przystanek>
+                    <nazwa>Mińsk</nazwa>
+                    <przyjazd>17:42:00</przyjazd>
+                    <odjazd>18:22:00</odjazd>
+                </przystanek>
+                <przystanek>
+                    <nazwa>Warszawa</nazwa>
+                    <przyjazd>23:58:00</przyjazd>
+                    <odjazd>00:55:00</odjazd>
+                </przystanek>
+                <przystanek>
+                    <nazwa>Berlin</nazwa>
+                    <przyjazd>05:15:00</przyjazd>
+                    <odjazd>06:18:00</odjazd>
+                </przystanek>
+            </przystanki>
+
+            <wagony>
+                <wagon>
+                    <numer>1</numer>
+                    <rodzaj>wagon klasy 1</rodzaj>
+                </wagon>
+                <wagon>
+                    <numer>2</numer>
+                    <rodzaj>wagon klasy 1</rodzaj>
+                </wagon>
+                <wagon>
+                    <numer>3</numer>
+                    <rodzaj>wagon klasy 1</rodzaj>
+                </wagon>
+                <wagon>
+                    <numer>4</numer>
+                    <rodzaj>wagon restauracyjny</rodzaj>
+                </wagon>
+                <wagon>
+                    <numer>5</numer>
+                    <rodzaj>wagon klasy 2</rodzaj>
+                </wagon>
+                <wagon>
+                    <numer>6</numer>
+                    <rodzaj>wagon klasy 2</rodzaj>
+                </wagon>
+                <wagon>
+                    <numer>7</numer>
+                    <rodzaj>wagon klasy 2</rodzaj>
+                </wagon>
+            </wagony>
+        </pociag>
+
+    </pociagi>
+
+</rozklad>
