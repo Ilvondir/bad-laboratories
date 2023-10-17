@@ -1,0 +1,28 @@
+{
+    "firstName": "Jan",
+    "lastName": "Nowak",
+    "age": 35,
+    "points": 75,
+    "childrens": [],
+    "items": ["book"],
+    "adult": true,
+    "veteran": false,
+    "insurance": null, 
+    "spouse": null,
+    "address": {
+        "street": "Warszawska",
+        "city": "Rzeszów",
+        "voivodeship": "Podkarpackie",
+        "postalCode": "35-000"
+    },
+    "phoneNumbers": [
+        {
+            "type": "komórkowy",
+            "number": "48 915 331 461"
+        },
+        {
+            "type": "stacjonarny",
+            "number": "17 946 55 97"
+        }
+    ]
+}

@@ -1,0 +1,84 @@
+{
+    "title": "Rozklad",
+    "description": "Rozklad jazdy pociagow.",
+    "type": "object",
+    "required": [
+        "od", "do", "pociagi"
+    ],
+    "properties": {
+        "od": {
+            "type": "string",
+            "format": "date"
+        },
+        "do": {
+            "type": "string",
+            "format": "date"
+        },
+        "pociagi": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "required": [
+                    "numer", "przewoznik", "rodzaj", "regionalny", "stacje"
+                ],
+                "properties": {
+                    "numer": {
+                        "type": "integer"
+                    },
+                    "przewoznik": {
+                        "type": "string",
+                        "maxLength": 15
+                    },
+                    "rodzaj": {
+                        "type": "string"
+                    },
+                    "nazwa": {
+                        "type": "string"
+                    },
+                    "regionalny": {
+                        "type": "boolean"
+                    },
+                    "stacje": {
+                        "type": "array",
+                        "minItems": 2,
+                        "items": {
+                            "type": "object",
+                            "required": ["nazwa", "odjazd", "przyjazd"],
+                            "properties": {
+                                "nazwa": {
+                                    "type": "string"
+                                },
+                                "przyjazd": {
+                                    "type": "string",
+                                    "format": "time"
+                                },
+                                "odjazd": {
+                                    "type": "string",
+                                    "format": "time"
+                                }
+                            }
+                        }
+                    },
+                    "wagony": {
+                        "type": "array",
+                        "minItems": 1,
+                        "maxItems": 5,
+                        "items": {
+                            "type": "object",
+                            "required": ["numer", "rodzaj"],
+                            "properties": {
+                                "numer": {
+                                    "type": "integer"
+                                },
+                                "rodzaj": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }            
+        }
+    }
+}
