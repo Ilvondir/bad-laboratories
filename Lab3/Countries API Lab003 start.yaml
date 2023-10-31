@@ -1,0 +1,15 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: 'Countries API Laravel'
+  description: 'Lab003 PAB'
+servers:
+  - description: 'Laravel'
+    url: 'http://localhost:8000/api'
+paths:
+  {}
+components:  
+  parameters:
+    {}
+  schemas:
+    {}
