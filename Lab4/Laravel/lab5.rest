@@ -1,0 +1,14 @@
+POST http://localhost:8000/api/hotels
+Content-Type: application/json
+
+{
+    "name": "Polski",
+    "stars": 5,
+    "city": "Warszawa"
+}
+
+###
+GET http://localhost:8000/api/hotels
+Accept: application/json
+
+###
