@@ -1,0 +1,366 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: 'Movies API Laravel'
+  description: Lab005 PAB
+servers:
+  - description: Laravel
+    url: http://localhost:8000/api
+paths:
+  /movies:
+    get:
+      tags:
+        - movies
+      summary: Returns all movies
+      responses:
+        '200':
+          description: A list of movies.
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/MovieCollection'
+      parameters:
+      - in: query
+        name: includeActors
+        schema:
+          type: boolean
+        description: Boolean to get all actors for movies.
+    post:
+      tags:
+        - movies
+      summary: Stores a new movie
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovieResource'
+        '422':
+          description: unprocessable content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StoreMovieRequest'
+        required: true              
+  /movies/{movieId}:
+    get:
+      tags:
+        - movies
+      summary: Returns a movie based on ID
+      responses:
+        '200':
+          description: movie response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovieResource'
+        '404':
+          description: 'not found'
+    put:
+      tags:
+        - movies
+      summary: Updates a movie
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovieResource'
+        '404':
+          description: movie not found
+        '422':
+          description: unprocessable content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMovieRequest'
+        description: updated movie data
+        required: true 
+    delete:
+      tags:
+        - movies
+      summary: Deletes a movie
+      responses:
+        '204':
+          description: successful operation
+        '404':
+          description: not found
+    parameters:
+      - $ref: '#/components/parameters/movieId'
+  /actors:
+    get:
+      tags:
+        - actors
+      summary: Returns all actors
+      responses:
+        '200':
+          description: A list of actors.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActorCollection'
+    post:
+      tags:
+        - actors
+      summary: Stores a new actor
+      responses:
+        '201':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActorResource'
+        '422':
+          description: unprocessable content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StoreActorRequest'
+        description: new actor data
+        required: true  
+  /actors/{actorId}:
+    get:
+      tags:
+        - actors
+      summary: Returns an actor based on ID
+      responses:
+        '200':
+          description: actor response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActorResource'
+        '404':
+          description: not found
+    put:
+      tags:
+        - actors
+      summary: Updates an actor
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActorResource'
+        '422':
+          description: unprocessable content
+        '404':
+          description: not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateActorRequest'
+        description: updated actor data
+        required: true 
+    delete:
+      tags:
+        - actors
+      summary: Deletes an actor
+      responses:
+        '204':
+          description: successful deleted
+        '404':
+          description: not found
+    parameters:
+      - $ref: '#/components/parameters/actorId'  
+  /movies/{movieId}/actors:
+    get:
+      tags:
+        - movies-actors
+      summary: Returns all actors of a given movie
+      operationId: getMovieCast
+      responses:
+        '200':
+          description: list of actors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActorCollection'
+      parameters:
+      - $ref: '#/components/parameters/movieId'
+  /movies/{movieId}/actors/{actorId}:
+    put:
+      tags:
+        - movies-actors
+      summary: Add actor to movie
+      operationId: addActorToMovieCast
+      responses:
+        '202':
+          description: success
+        '404':
+          description: not found
+    delete:
+      tags:
+        - movies-actors
+      summary: Remove actor from movie
+      operationId: addActorFromMovieCast
+      responses:
+        '204':
+          description: success, no content
+        '404':
+          description: not found
+    parameters:
+    - $ref: '#/components/parameters/movieId'
+    - $ref: '#/components/parameters/actorId'
+  /movies/{movieId}/cast:
+    put:
+      tags:
+        - movies-actors
+      summary: Add all actors to movie
+      operationId: setCast
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                actors:
+                  type: array
+                  items:
+                    type: integer
+                  example: [1, 2, 3]
+        description: actors identificators
+        required: true
+      responses:
+        '202':
+          description: success
+        '404':
+          description: not found
+    parameters:
+    - $ref: '#/components/parameters/movieId'
+components:
+  parameters:
+    movieId:
+      name: movieId
+      in: path
+      description: ID of movie to use
+      required: true
+      schema:
+        type: integer  
+    actorId:
+      name: actorId
+      in: path
+      description: ID of actor to use
+      required: true
+      schema:
+        type: integer  
+  schemas:
+    Movie:
+      type: object
+      required:
+        - title
+        - length
+        - year
+        - director
+      properties:
+        title:
+          type: string
+          minLength: 2
+          maxLength: 50
+          example: Casino Royal
+        length:
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 1300
+          example: 120
+        year:
+          type: integer
+          format: int32
+          minimum: 1880
+          example: 2006
+        director:
+          type: string
+          example: Martin Campbell
+    MovieResource:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 1
+        actors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorResource'
+      allOf:
+        - $ref: '#/components/schemas/Movie'
+        - type: object
+    MovieCollection:
+      type: object  
+      properties:
+        data:
+          type: array
+          items:
+           $ref: '#/components/schemas/MovieResource'        
+    StoreMovieRequest:
+      type: object 
+      allOf:
+        - $ref: '#/components/schemas/Movie'
+        - type: object
+    UpdateMovieRequest:
+      type: object 
+      allOf:
+        - $ref: '#/components/schemas/Movie'
+        - type: object
+    Actor:
+      type: object
+      required:
+        - first_name
+        - last_name
+        - birthday
+        - height
+      properties:
+        first_name:
+          type: string
+          maximum: 30
+          example: Daniel
+        last_name:
+          type: string
+          maximum: 30
+          example: Craig
+        birthday:
+          type: string
+          format: date-time
+          example: '1967-03-02'
+        height:
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 250
+          example: 178
+    ActorResource:
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 1
+      allOf:
+        - $ref: '#/components/schemas/Actor'
+        - type: object          
+    ActorCollection:
+      type: object  
+      properties:
+        data:
+          type: array
+          items:
+           $ref: '#/components/schemas/ActorResource'          
+    StoreActorRequest:
+      type: object 
+      allOf:
+        - $ref: '#/components/schemas/Actor'
+        - type: object
+    UpdateActorRequest:
+      type: object 
+      allOf:
+        - $ref: '#/components/schemas/Actor'
+        - type: object
